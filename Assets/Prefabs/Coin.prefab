@@ -165,6 +165,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: id-beach-icecream
       objectReference: {fileID: 0}
+    - target: {fileID: 1151388028547126963, guid: d888da69c2339e344b38f9a94f902b4c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 20.6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d888da69c2339e344b38f9a94f902b4c, type: 3}
 --- !u!4 &936120749145437382 stripped
