@@ -323,6 +323,7 @@
 "Assets/Scripts/BulletMotion.cs"
 "Assets/Scripts/enemyBullet.cs"
 "Assets/Scripts/EnemyShooter.cs"
+"Assets/Scripts/GameManager.cs"
 "Assets/Scripts/PlayerController.cs"
 "Assets/Scripts/ShooterScript.cs"
 -langversion:8.0

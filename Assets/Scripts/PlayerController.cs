@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    private GameManager gameManager;
 
     public int speed = 2;
     public float jumpForce = 12.0f;
@@ -15,11 +16,14 @@ public class PlayerController : MonoBehaviour
 
     bool jumping = false;
 
+    //this score variable is just for logs, not the actual thing being updated (the score displayed on screen is through UpdateScore() and GameManager.cs)
     int score = 0;
 
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+
         rb = GetComponent<Rigidbody>();
         Debug.Log("Oh no, enemies have infiltrated and taken over your sandcastle! It's up to you to reclaim your castle and treasure!");
         Debug.Log("You can use your water gun to shoot at the enemies. The enemies have water guns of their own, so be careful and dodge their bullets.");
@@ -53,6 +57,8 @@ public class PlayerController : MonoBehaviour
         {
             score--;
             Debug.Log("Oh no! The enemy has stolen one of your coins! You currently have a total of " + score + " coin(s).");
+
+            gameManager.UpdateScore(-1, false);
         }
         if (other.gameObject.CompareTag("Sandcastle"))
         {
@@ -68,6 +74,8 @@ public class PlayerController : MonoBehaviour
             {
                 Debug.Log("Congratulations, you have reclaimed your sandcastle! You have a total score of " + score + " coin(s). Try to aim for a higher score next time! (Click the run button twice if you would like to restart the game and play again.)");
             }
+
+            gameManager.UpdateScore(0, true);
         }
     }
 
@@ -84,11 +92,15 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
             score++;
             Debug.Log("You currently have a total of " + score + " coin(s)! :)");
+
+            gameManager.UpdateScore(1, false);
         }
         if (other.gameObject.CompareTag("Ocean"))
         {
             score = 0;
             Debug.Log("Uh-oh! You fell into the ocean and lost all of your coins! Your score is now " + score + ". (Click the run button twice if you would like to restart the game and play again.)");
+
+            gameManager.UpdateScore(-100, false);
         }
     }
 
